@@ -63,7 +63,7 @@ class IndexView(View):
         for movie in user_recommend_movie:
             movie = model_to_dict(movie)
             score = int(movie["averating"]+0.5)
-            movie["stars"] = [(i<score) for i in range(5)]
+            movie["stars"] = [(i<score) for i in range(1, 10, 2)]
             user_recommend_movie_dict.append(movie)
 
         print(user_recommend_movie_dict)
