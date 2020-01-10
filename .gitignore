@@ -13,6 +13,7 @@ node_modules
 ### backend
 
 migrations/
+MovieSizer/settings.py
 
 # local env files
 .env.local
