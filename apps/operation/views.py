@@ -58,24 +58,35 @@ class IndexView(View):
 
 
         user_recommend_movie = recommendForUser(request=request)
+        user_recommend_movie_dict = list()
 
-        all_movieinfo = MovieInfo.objects.all().order_by('-releasedate')
-        all_movieinfo = list(all_movieinfo[0:18])
-        print(all_movieinfo)
-        for movie in all_movieinfo+user_recommend_movie:
+        for movie in user_recommend_movie:
             movie = model_to_dict(movie)
             score = int(movie["averating"]+0.5)
             movie["stars"] = [(i<score) for i in range(5)]
-        top1info = all_movieinfo[0]
-        movieinfo = all_movieinfo[9:18]
-        movietitle = all_movieinfo[1]
-        movielatest = all_movieinfo[1:9]
+            user_recommend_movie_dict.append(movie)
+
+        print(user_recommend_movie_dict)
+
+        all_movieinfo = MovieInfo.objects.all().order_by('-releasedate')
+        
+        all_movieinfo_dict = list()
+        for movie in all_movieinfo:
+            movie = model_to_dict(movie)
+            score = int(movie["averating"]+0.5)
+            movie["stars"] = [(i<score) for i in range(5)]
+            all_movieinfo_dict.append(movie)
+
+        top1info = all_movieinfo_dict[0]
+        movieinfo = all_movieinfo_dict[9:18]
+        movietitle = all_movieinfo_dict[1]
+        movielatest = all_movieinfo_dict[1:9]
         return render(request, 'index.html', {
             "top1info": top1info,
             "movieinfo": movieinfo,
             "movietitle": movietitle,
             "movielatest": movielatest,
-            "user_recommend_movie": user_recommend_movie,
+            "user_recommend_movie": user_recommend_movie_dict,
         })
 
 
