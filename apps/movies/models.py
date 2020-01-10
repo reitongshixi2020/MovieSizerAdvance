@@ -22,7 +22,7 @@ class MovieCategory(models.Model):
 
 class MovieInfo(models.Model):
     RATING_RANGE = (
-        MaxValueValidator(5),
+        MaxValueValidator(10),
         MinValueValidator(0)
     )
     # moviename = models.CharField(max_length=1000, default='', verbose_name='电影名称')

@@ -65,11 +65,9 @@
 													<ul class="w3l-ratings">
 														{% for stars in movieinfo.star %}
 														{% if stars %}
-														<li><a href="#"><i class="fa fa-star"
-																	aria-hidden="true"></i></a></li>
+														<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
 														{% else %}
-														<li><a href="#"><i class="fa fa-star-o"
-																	aria-hidden="true"></i></a></li>
+														<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
 														{% endif %}
 														{% endfor %}
 
@@ -127,9 +125,9 @@
 														<ul class="w3l-ratings">
 															{% for stars in movieinfo.star %}
 															{% if stars %}
-															<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+															<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
 															{% else %}
-															<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+															<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
 															{% endif %}
 															{% endfor %}
 														
@@ -165,7 +163,7 @@
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
 										<a href="{% url 'movieinfo' userrecommendmovie.id %}"
 											class="hvr-sweep-to-bottom"><img src="{{ userrecommendmovie.picture }}"
-												title="Movies Pro" class="img-responsive" alt=" ">
+												title="" class="img-responsive" alt = "">
 											<div class="w3l-action-icon"><i class="fa fa-play-circle-o"
 													aria-hidden="true"></i></div>
 										</a>
@@ -179,9 +177,9 @@
 													<ul class="w3l-ratings">
 														{% for stars in userrecommendmovie.stars %}
 														{% if stars %}
-														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
 														{% else %}
-														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+														<li><a href="#" ><i title = "{{userrecommendmovie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
 														{% endif %}
 														{% endfor %}
 
