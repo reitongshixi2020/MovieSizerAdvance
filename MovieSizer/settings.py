@@ -93,7 +93,7 @@ DATABASES = {
         # 'PORT': '33060',
         'NAME': 'MovieSizer',
         'USER': 'root',
-        'PASSWORD': 'Zjb19980505',
+        'PASSWORD': '200055',
         'HOST': 'localhost',
     }
 }
