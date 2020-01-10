@@ -50,6 +50,7 @@ class MovieInfo(models.Model):
     description = models.TextField(default='', verbose_name='简介', null=True, blank=True)
     typelist = models.ManyToManyField(MovieCategory, verbose_name='类型')
     backpost = models.CharField(max_length=3000, default='', null=True, blank=True)
+    link = models.URLField(max_length=1000, verbose_name='外链', null=True, blank=True)
 
     def __str__(self):
         return '%s - %s' % (self.directors, self.moviename)
