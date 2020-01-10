@@ -67,9 +67,9 @@ class IndexView(View):
             score = int(movie["averating"]+0.5)
             movie["stars"] = [(i<score) for i in range(5)]
         top1info = all_movieinfo[0]
-        movieinfo = all_movieinfo[1:9]
+        movieinfo = all_movieinfo[9:18]
         movietitle = all_movieinfo[1]
-        movielatest = all_movieinfo[9:18]
+        movielatest = all_movieinfo[1:9]
         return render(request, 'index.html', {
             "top1info": top1info,
             "movieinfo": movieinfo,
