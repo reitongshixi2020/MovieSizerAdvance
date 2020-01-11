@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles%}
 {% block title %}首页{% endblock %}
-{% block bread %}<li><a href="index.html">Home</a></li>{% endblock %}
+
+{% block bread %}
+<li><a href="index.html"><strong>Home</strong></a></li>
+<li><a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>演出</strong></a></li>
+<li><a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>赛事</strong></strong></li>
+<li><a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>我的</strong></a></li>
+<li><a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a><input type = "text" ><input type = "button" value = "搜索"></li>
+{% endblock %}
 {% block content %}
 <div class="w3_content_agilleinfo_inner">
 	<div class="agile_featured_movies">
@@ -17,7 +24,7 @@
 							<div class="w3_agile_featured_movies">
 								<div class="col-md-5 video_agile_player">
 									<div class="video-grid-single-page-agileits">
-										<div data-video="f2Z65fobH2I" id="video"> <img src="{{ top1info.picture }}"
+										<div data-video="f2Z65fobH2I" id="video"> <img referrerpolicy="no-referrer" src="{{ top1info.picture }}"
 												alt="" class="img-responsive" style="height: 314px ; width: 766px" />
 										</div>
 									</div>
@@ -34,11 +41,11 @@
 										</p>
 										<p class="fexi_header_para fexi_header_para1"><span>Star
 												Rating<label>:</label></span>
-											{% for stars in top1info.star %}
+											{% for stars in top1info.stars %}
 											{% if stars %}
-											<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+											<a href="#"><i title = "{{top1info.averating}}" class="fa fa-star" aria-hidden="true"></i></a>
 											{% else %}
-											<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+											<a href="#"><i title = "{{top1info.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a>
 											{% endif %}
 
 											{% endfor %}
@@ -50,7 +57,7 @@
 									{% for movie in movieinfo %}
 									<div class="w3l-movie-gride-agile">
 										<a href="{% url 'movieinfo' movie.id %}" class="hvr-sweep-to-bottom"><img
-												src="{{ movie.picture }}" title="Movies Pro" class="img-responsive"
+											referrerpolicy="no-referrer" src="{{ movie.picture }}" title="Movies Pro" class="img-responsive"
 												alt=" " width="162px" height="197px">
 											<div class="w3l-action-icon"><i class="fa fa-play-circle-o"
 													aria-hidden="true"></i></div>
@@ -63,13 +70,13 @@
 												<p>{{ movie.releasedate }}</p>
 												<div class="block-stars">
 													<ul class="w3l-ratings">
-														{% for stars in movieinfo.star %}
-														{% if stars %}
-														<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
-														{% else %}
-														<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
-														{% endif %}
-														{% endfor %}
+														{% for stars in movie.stars %}
+															{% if stars %}
+															<li><a href="#"><i title = "{{movie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
+															{% else %}
+															<li><a href="#"><i title = "{{movie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
+															{% endif %}
+															{% endfor %}
 
 													</ul>
 												</div>
@@ -108,7 +115,7 @@
 										<div class="col-md-2 w3l-movie-gride-agile requested-movies">
 										<!--<div class="w3l-movie-gride-agile w3l-movie-gride-slider ">-->
 											<a href="{% url 'movieinfo' mlatest.id %}" class="hvr-sweep-to-bottom"><img
-													src="{% if mlatest.picture %}{{ mlatest.picture }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
+												referrerpolicy="no-referrer" src="{% if mlatest.picture %}{{ mlatest.picture }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
 													title="Movies Pro" class="img-responsive" alt=" " />
 												<div class="w3l-action-icon"><i class="fa fa-play-circle-o"
 														aria-hidden="true"></i></div>
@@ -123,11 +130,11 @@
 													<p>{{ mlatest.releasedate }}</p>
 													<div class="block-stars">
 														<ul class="w3l-ratings">
-															{% for stars in movieinfo.star %}
+															{% for stars in mlatest.stars %}
 															{% if stars %}
-															<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
+															<li><a href="#"><i title = "{{mlatest.averating}}" class="fa fa-star" aria-hidden="true"></i></a></li>
 															{% else %}
-															<li><a href="#"><i title = "{{userrecommendmovie.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
+															<li><a href="#"><i title = "{{mlatest.averating}}" class="fa fa-star-o" aria-hidden="true"></i></a></li>
 															{% endif %}
 															{% endfor %}
 														
@@ -152,7 +159,7 @@
 								<br/><br/><br/><br/><br/>
 								<br/><br/><br/><br/><br/>
 								<br/><br/<br/><br/><br/><br/>
-								<br/><br/>
+								<br/><br/><br/><br/><br/><br/><br/>
 
 								<div class="agileinfo_tabs">
 								<h3 class="agile_w3_title">Requested <span>Movies</span> </h3>
@@ -162,7 +169,7 @@
 									{% for userrecommendmovie in  user_recommend_movie %}
 									<div class="col-md-2 w3l-movie-gride-agile requested-movies">
 										<a href="{% url 'movieinfo' userrecommendmovie.id %}"
-											class="hvr-sweep-to-bottom"><img src="{{ userrecommendmovie.picture }}"
+											class="hvr-sweep-to-bottom"><img referrerpolicy="no-referrer" src="{{ userrecommendmovie.picture }}"
 												title="" class="img-responsive" alt = "">
 											<div class="w3l-action-icon"><i class="fa fa-play-circle-o"
 													aria-hidden="true"></i></div>
